@@ -1,6 +1,6 @@
 <?php
 
-namespace Yggdrasil\Component\NidhoggComponent\Driver;
+namespace Nidhogg\Driver;
 
 use Nidhogg\Routing\RouteCollector;
 use Nidhogg\WampServer;
@@ -14,7 +14,7 @@ use Yggdrasil\Core\Exception\MissingConfigurationException;
  *
  * [Nidhogg] WAMP server driver
  *
- * @package Yggdrasil\Component\Nidhogg\Driver
+ * @package Nidhogg\Driver
  * @author Paweł Antosiak <contact@pawelantosiak.com>
  */
 class WampServerDriver implements DriverInterface
