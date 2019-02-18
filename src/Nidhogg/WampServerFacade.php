@@ -3,17 +3,18 @@
 namespace Nidhogg;
 
 use Yggdrasil\Core\Configuration\ConfigurationInterface;
+use Yggdrasil\Core\Exception\DriverNotFoundException;
 use Nidhogg\Routing\RouteCollector;
 
 /**
- * Class WampServerAdapter
+ * Class WampServerFacade
  *
- * Adapter for WampServer
+ * Decouples WampServer from its dependencies
  *
  * @package Nidhogg
  * @author Paweł Antosiak <contact@pawelantosiak.com>
  */
-final class WampServerAdapter
+final class WampServerFacade
 {
     /**
      * Instance of WampServer
@@ -37,7 +38,7 @@ final class WampServerAdapter
     private $appConfiguration;
 
     /**
-     * WampServerAdapter constructor.
+     * WampServerFacade constructor.
      *
      * @param WampServer $server
      * @param RouteCollector $routeCollector
@@ -54,6 +55,8 @@ final class WampServerAdapter
      * Runs configured WampServer
      *
      * @throws \Exception
+     * @throws \ReflectionException
+     * @throws DriverNotFoundException
      */
     public function runServer(): void
     {

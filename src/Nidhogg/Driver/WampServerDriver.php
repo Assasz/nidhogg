@@ -4,10 +4,11 @@ namespace Nidhogg\Driver;
 
 use Nidhogg\Routing\RouteCollector;
 use Nidhogg\WampServer;
-use Nidhogg\WampServerAdapter;
+use Nidhogg\WampServerFacade;
 use Yggdrasil\Core\Configuration\ConfigurationInterface;
 use Yggdrasil\Core\Driver\DriverInterface;
 use Yggdrasil\Core\Exception\MissingConfigurationException;
+use Yggdrasil\Core\Exception\DriverNotFoundException;
 
 /**
  * Class WampServerDriver
@@ -27,11 +28,11 @@ class WampServerDriver implements DriverInterface
     private static $driverInstance;
 
     /**
-     * Instance of server adapter
+     * Instance of server facade
      *
-     * @var WampServerAdapter
+     * @var WampServerFacade
      */
-    private static $serverAdapterInstance;
+    private static $serverFacadeInstance;
 
     /**
      * Prevents object creation and cloning
@@ -57,7 +58,7 @@ class WampServerDriver implements DriverInterface
                 throw new MissingConfigurationException($requiredConfig, 'wamp_server');
             }
 
-            self::$serverAdapterInstance = new WampServerAdapter(
+            self::$serverFacadeInstance = new WampServerFacade(
                 new WampServer(), new RouteCollector(), $appConfiguration
             );
 
@@ -71,9 +72,11 @@ class WampServerDriver implements DriverInterface
      * Runs WAMP server
      *
      * @throws \Exception
+     * @throws \ReflectionException
+     * @throws DriverNotFoundException
      */
     public function runServer()
     {
-        self::$serverAdapterInstance->runServer();
+        self::$serverFacadeInstance->runServer();
     }
 }
