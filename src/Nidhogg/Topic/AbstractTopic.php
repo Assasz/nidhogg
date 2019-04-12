@@ -2,9 +2,7 @@
 
 namespace Nidhogg\Topic;
 
-use Psr\Http\Message\RequestInterface;
 use Ratchet\ConnectionInterface;
-use Ratchet\Http\HttpServerInterface;
 use Ratchet\Wamp\Topic;
 use Ratchet\Wamp\WampServerInterface;
 use Yggdrasil\Core\Driver\DriverAccessorTrait;
@@ -43,12 +41,16 @@ abstract class AbstractTopic implements TopicInterface, WampServerInterface
      * AbstractTopic constructor.
      *
      * @param DriverCollection $drivers
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
      */
     public function __construct(DriverCollection $drivers)
     {
-        $this->drivers        = $drivers;
+        $this->drivers = $drivers;
         $this->allowedOrigins = ['*'];
-        $this->host           = null;
+        $this->host = null;
+
+        $this->installDriversIfEnabled();
     }
 
     /**
