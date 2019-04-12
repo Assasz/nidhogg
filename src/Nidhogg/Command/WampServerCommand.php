@@ -64,8 +64,6 @@ class WampServerCommand extends Command
             "On {$configuration['wamp_server']['host']}:{$configuration['wamp_server']['port']}"
         ]);
 
-        $this->appConfiguration
-            ->loadDriver('wampServer')
-            ->runServer();
+        $this->appConfiguration->loadDriver('wampServer')->runServer();
     }
 }

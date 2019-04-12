@@ -10,7 +10,7 @@ use Nidhogg\Topic\TopicInterface;
 /**
  * Class RouteCollector
  *
- * Collects routes for WampServer
+ * Collects topics routes
  *
  * @package Nidhogg\Routing
  * @author Paweł Antosiak <contact@pawelantosiak.com>
@@ -38,7 +38,7 @@ final class RouteCollector
     }
 
     /**
-     * Returns routes collected by topics existing in application
+     * Returns routes collected from topics existing in application
      *
      * @return array
      * @example route: /chat/member => ChatMemberTopic
@@ -47,9 +47,8 @@ final class RouteCollector
      * @throws \ReflectionException
      * @throws NotTopicFoundException if found object is not a topic instance
      */
-    public function getRouteCollection(): array
+    public function collectRoutes(): array
     {
-        $routeCollection = [];
         $configuration = $this->appConfiguration->getConfiguration();
         $topics = ClassFinder::getClassesInNamespace(rtrim($configuration['wamp_server']['topic_namespace'], '\\'));
 
@@ -75,6 +74,6 @@ final class RouteCollector
             $routeCollection[] = $route;
         }
 
-        return $routeCollection;
+        return $routeCollection ?? [];
     }
 }

@@ -7,8 +7,8 @@ use Ratchet\ConnectionInterface;
 use Ratchet\Http\HttpServerInterface;
 use Ratchet\Wamp\Topic;
 use Ratchet\Wamp\WampServerInterface;
-use Yggdrasil\Core\Driver\Base\DriverAccessorTrait;
-use Yggdrasil\Core\Driver\Base\DriverCollection;
+use Yggdrasil\Core\Driver\DriverAccessorTrait;
+use Yggdrasil\Core\Driver\DriverCollection;
 
 /**
  * Class AbstractTopic
@@ -21,7 +21,7 @@ use Yggdrasil\Core\Driver\Base\DriverCollection;
 abstract class AbstractTopic implements TopicInterface, WampServerInterface
 {
     /**
-     * Trait that provides access to application drivers
+     * Provides access to application drivers
      */
     use DriverAccessorTrait;
 

@@ -60,13 +60,11 @@ final class WampServerFacade
      */
     public function runServer(): void
     {
-        $routes = $this->routeCollector
-            ->setConfiguration($this->appConfiguration)
-            ->getRouteCollection();
-
         $this->server
             ->setConfiguration($this->appConfiguration)
-            ->setRoutes($routes)
+            ->setRoutes($this->routeCollector
+                ->setConfiguration($this->appConfiguration)
+                ->collectRoutes())
             ->run();
     }
 }

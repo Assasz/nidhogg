@@ -42,7 +42,7 @@ class WampServerDriver implements DriverInterface
     private function __clone() {}
 
     /**
-     * Installs server adapter driver
+     * Installs WAMP server driver
      *
      * @param ConfigurationInterface $appConfiguration
      * @return DriverInterface

@@ -49,7 +49,7 @@ final class WampServer
     }
 
     /**
-     * Sets socket routes
+     * Sets topic routes
      *
      * @param array $routes
      * @return WampServer
